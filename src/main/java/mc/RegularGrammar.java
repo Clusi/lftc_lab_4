@@ -19,7 +19,7 @@ public class RegularGrammar {
     }
 
     public void createProductionList(){
-        ArrayList<Production> productions_without_or_between_them = new ArrayList<>();
+        productions_without_or_between_them = new ArrayList<>();
         for(Production production : this.getProductions()){
             for(String element : production.getRight().split("\\|")){
                 productions_without_or_between_them.add(new Production(production.getLeft(),element));

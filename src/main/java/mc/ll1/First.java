@@ -4,6 +4,7 @@ import mc.Production;
 import mc.RegularGrammar;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Clusi on 12/12/2017.
@@ -62,9 +63,7 @@ public class First {
     }
 
     public Set<String> getWithoutEpsilon(String nonTerminal) {
-        Set<String> res = firstTable.get(nonTerminal);
-        res.remove("$");
-        return res;
+        return firstTable.get(nonTerminal).stream().filter(x -> !x.equals("$")).collect(Collectors.toSet());
     }
 
     @Override

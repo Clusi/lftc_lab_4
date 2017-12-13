@@ -1,6 +1,7 @@
 package mc;
 
 import mc.ll1.First;
+import mc.ll1.Follow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +16,7 @@ public class Controller {
     private FiniteAutomata finiteAutomata;
     private RegularGrammar regularGrammar;
     private First firstTable = new First();
+    private Follow followTable = new Follow();
 
     public Controller(Repository repository) {
         this.repository = repository;
@@ -43,6 +45,12 @@ public class Controller {
     public void printFirstTable(RegularGrammar regularGrammar) {
         firstTable.createFirstTable(regularGrammar);
         System.out.println(firstTable);
+    }
+
+    public void printFollowTable(RegularGrammar regularGrammar) {
+        firstTable.createFirstTable(regularGrammar);
+        followTable.createFollowTable(regularGrammar, "S", firstTable);
+        System.out.println(followTable);
     }
 
     public void printRegularGrammar(RegularGrammar regularGrammar) {

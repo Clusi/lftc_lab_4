@@ -79,6 +79,10 @@ public class Main {
                     break;
                 case "14":
                     controller.printFirstTable(regularGrammar);
+                    break;
+                case "15":
+                    controller.printFollowTable(regularGrammar);
+                    break;
                 case "0":
                     return;
             }

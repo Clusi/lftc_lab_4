@@ -27,4 +27,12 @@ public class Production {
     public void setRight(String right) {
         this.right = right;
     }
+
+    @Override
+    public String toString() {
+        return "Production{" +
+                "left='" + left + '\'' +
+                ", right='" + right + '\'' +
+                '}';
+    }
 }
