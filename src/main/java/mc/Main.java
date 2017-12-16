@@ -33,9 +33,12 @@ public class Main {
 
         String cmd;
         while (true) {
-            showMenu();
+            System.out.print("--->");
             cmd = scanner.next();
             switch (cmd) {
+                case "M":
+                    showMenu();
+                    break;
                 case "1":
                     regularGrammar = controller.getRegularGrammar();
                     break;
@@ -82,6 +85,12 @@ public class Main {
                     break;
                 case "15":
                     controller.printFollowTable(regularGrammar);
+                    break;
+                case "16":
+                    controller.printAnaliseTable(regularGrammar);
+                    break;
+                case "17":
+                    controller.printIsSequenceAccepted(regularGrammar);
                     break;
                 case "0":
                     return;

@@ -80,4 +80,8 @@ public class Follow {
         }
         return res;
     }
+
+    public HashMap<String, Set<String>> getFollowTable() {
+        return followTable;
+    }
 }

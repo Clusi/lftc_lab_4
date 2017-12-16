@@ -1,11 +1,12 @@
 package mc;
 
+import com.sun.deploy.util.ArrayUtil;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Created by Clusi on 11/15/2017.
@@ -71,5 +72,21 @@ public class Repository {
         }
 
         return new FiniteAutomata(states,alphabet,firstState,finaleStates,transitions);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<String> readInputSequence(String fileName) {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            ArrayList input = new ArrayList();
+            List<String> strings = Arrays.asList(bufferedReader.readLine().split(""));
+            Collections.reverse(strings);
+            return strings;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

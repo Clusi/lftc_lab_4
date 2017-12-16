@@ -1,10 +1,13 @@
 package mc;
 
+import mc.ll1.AnaliseTable;
+import mc.ll1.Analyzer;
 import mc.ll1.First;
 import mc.ll1.Follow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Clusi on 11/15/2017.
@@ -13,15 +16,21 @@ public class Controller {
     private Repository repository;
     private String regularGrammarPath = "src/main/resources/regularGrammar.txt";
     private String finiteAutomataPath = "src/main/resources/finiteAutomata.txt";
+    private String inputSequencePath = "src/main/resources/inputSequence2.txt";
     private FiniteAutomata finiteAutomata;
     private RegularGrammar regularGrammar;
     private First firstTable = new First();
     private Follow followTable = new Follow();
+    private AnaliseTable analiseTable;
+    private List<String> inputSequence;
+    private Analyzer analyzer;
 
     public Controller(Repository repository) {
         this.repository = repository;
         regularGrammar = repository.readRegularGrammarFromFile(regularGrammarPath);
         finiteAutomata = repository.readFiniteAutomataFromFile(finiteAutomataPath);
+        inputSequence = repository.readInputSequence(inputSequencePath);
+        this.analyzer = new Analyzer(inputSequence, "S");
     }
 
     public void printNonTerminal(RegularGrammar regularGrammar) {
@@ -51,6 +60,23 @@ public class Controller {
         firstTable.createFirstTable(regularGrammar);
         followTable.createFollowTable(regularGrammar, "S", firstTable);
         System.out.println(followTable);
+    }
+
+    public void createAnaliseTable(RegularGrammar regularGrammar) {
+        firstTable.createFirstTable(regularGrammar);
+        followTable.createFollowTable(regularGrammar, "S", firstTable);
+        analiseTable = new AnaliseTable(regularGrammar, firstTable, followTable);
+        analiseTable.initializeTable();
+    }
+
+    public void printAnaliseTable(RegularGrammar regularGrammar) {
+        createAnaliseTable(regularGrammar);
+        System.out.println(analiseTable);
+    }
+
+    public void printIsSequenceAccepted(RegularGrammar regularGrammar) {
+        createAnaliseTable(regularGrammar);
+        System.out.println(analyzer.startAnalising(analiseTable));
     }
 
     public void printRegularGrammar(RegularGrammar regularGrammar) {
