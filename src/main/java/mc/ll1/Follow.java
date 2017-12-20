@@ -12,17 +12,6 @@ import java.util.*;
 public class Follow {
     private HashMap<String, Set<String>> followTable = new HashMap<>();
 
-    public void intializeFolllowTable(RegularGrammar grammar, String first, First firstTable) {
-        followTable = new HashMap<>();
-        for (String nonTerminal : grammar.getNonTerminals()) {
-            Set<String> follow = new HashSet<>();
-            if (nonTerminal.equals(first)) {
-                follow.add("#");
-            }
-            followTable.put(nonTerminal, follow);
-        }
-    }
-
     public Set<String> createFollow(RegularGrammar grammar, First firstTable, String nonTerminal, String primu) {
 
         Set<String> follow = new HashSet<>();
@@ -59,11 +48,11 @@ public class Follow {
         return follow;
     }
 
-    public void createFollowTable(RegularGrammar grammar, String primu, First firstTable) {
+    public void createFollowTable(RegularGrammar grammar, First firstTable) {
 
         for (String nonTerminal : grammar.getNonTerminals()) {
             if (!followTable.containsKey(nonTerminal)) {
-                followTable.put(nonTerminal, createFollow(grammar, firstTable, nonTerminal, primu));
+                followTable.put(nonTerminal, createFollow(grammar, firstTable, nonTerminal, grammar.getFirstState()));
             }
         }
     }

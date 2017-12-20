@@ -1,1 +1,1 @@
-zaxawya
+(a+a)*a

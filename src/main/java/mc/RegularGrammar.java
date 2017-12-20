@@ -10,12 +10,14 @@ public class RegularGrammar {
     private ArrayList<String> terminals;
     private ArrayList<Production> productions;
     private ArrayList<Production> productions_without_or_between_them;
+    private String firstState;
 
     public RegularGrammar(ArrayList<String> nonTerminals, ArrayList<String> terminals, ArrayList<Production> productions) {
         this.nonTerminals = nonTerminals;
         this.terminals = terminals;
         this.productions = productions;
         createProductionList();
+        this.firstState = nonTerminals.get(0);
     }
 
     public void createProductionList(){
@@ -57,5 +59,17 @@ public class RegularGrammar {
     public void setProductions_without_or_between_them(ArrayList<Production> productions_without_or_between_them) {
 
         this.productions_without_or_between_them = productions_without_or_between_them;
+    }
+
+    public boolean isTerminal(String element){
+        return getTerminals().contains(element);
+    }
+
+    public String getFirstState() {
+        return firstState;
+    }
+
+    public void setFirstState(String firstState) {
+        this.firstState = firstState;
     }
 }

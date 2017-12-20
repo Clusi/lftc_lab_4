@@ -16,7 +16,7 @@ public class Controller {
     private Repository repository;
     private String regularGrammarPath = "src/main/resources/regularGrammar.txt";
     private String finiteAutomataPath = "src/main/resources/finiteAutomata.txt";
-    private String inputSequencePath = "src/main/resources/inputSequence2.txt";
+    private String inputSequencePath = "src/main/resources/inputSequence.txt";
     private FiniteAutomata finiteAutomata;
     private RegularGrammar regularGrammar;
     private First firstTable = new First();
@@ -58,13 +58,13 @@ public class Controller {
 
     public void printFollowTable(RegularGrammar regularGrammar) {
         firstTable.createFirstTable(regularGrammar);
-        followTable.createFollowTable(regularGrammar, "S", firstTable);
+        followTable.createFollowTable(regularGrammar, firstTable);
         System.out.println(followTable);
     }
 
     public void createAnaliseTable(RegularGrammar regularGrammar) {
         firstTable.createFirstTable(regularGrammar);
-        followTable.createFollowTable(regularGrammar, "S", firstTable);
+        followTable.createFollowTable(regularGrammar, firstTable);
         analiseTable = new AnaliseTable(regularGrammar, firstTable, followTable);
         analiseTable.initializeTable();
     }

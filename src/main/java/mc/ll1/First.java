@@ -21,9 +21,9 @@ public class First {
                 if (production.getLeft().equals(element)) {
                     for (String termen : production.getRight().split("\\|")) {
                         // terminal | $ regex
-                        String nonTerminalRegex = "^[0-9a-z]|\\$|^[a-z0-9][A-Za-z]";
 
-                        if (termen.matches(nonTerminalRegex))
+
+                        if (grammar.isTerminal(termen.charAt(0)+"") || termen.charAt(0) == '$')
                             first.add(termen.charAt(0) + "");
                         else {
                             for (String atom : termen.split("")) {
